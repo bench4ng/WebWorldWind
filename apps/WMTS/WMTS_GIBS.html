@@ -11,25 +11,39 @@
     <script data-main="../WMTS/WMTS_GIBS.js" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>
 </head>
 <body>
+<style media="screen" type="text/css">
+
+body { 
+    background: url('stars.jpg') no-repeat center center fixed;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+} 
+
+</style>
 <div class="container">
-    <div class="jumbotron hidden-xs">
-        <h1 style="text-align:center">WorldWind WMTS - GIBS</h1>
-    </div>
-    <div class="row">
-        <div class="col-sm-3">
-            <h4>Projection</h4>
+        
+        <div class="col-sm-8" id="globe" style="width: 100%; height: 100%; position: fixed; left: 0">
+            <canvas id="canvasOne" width="1920" height="1080" style="position: fixed; left: 0; width: 100%; height: 100%">
+                Your browser does not support HTML5 Canvas.
+            </canvas>
+        </div>
+
+        <div class="col-sm-2" style="width: 15%; left: 0; position: fixed; background: rgba(0,0,0,0.5)">
+            <h4><font color="white">Projection</font></h4>
             <div class="dropdown" id="projectionDropdown">
             </div>
             <br>
-            <h4>Add layers</h4>
+            <h4><font color="white">Add layers</font></h4>
             <div class="dropdown" id="layerDropdown">
             </div>
-            <br>
-            <h4 id="count">Selected layers</h4>
+            <br><font color="white">
+            <h4 id="count">Selected layers</h4></font>
             <div class="list-group" id="layerList">
             </div>
             <br>
-            <h4>Destination</h4>
+            <h4><font color="white">Destination</font></h4>
             <div class="input-group" id="searchBox">
                 <input type="text" class="form-control" placeholder="GoTo" id="searchText"/>
                 <span class="input-group-btn">
@@ -39,11 +53,7 @@
                 </span>
             </div>
         </div>
-        <div class="col-sm-9" id="globe">
-            <canvas id="canvasOne" width="1000" height="1000" style="width: 100%; height: auto">
-                Your browser does not support HTML5 Canvas.
-            </canvas>
-        </div>
+
     </div>
 </div>
 </body>

@@ -38,12 +38,12 @@ requirejs(['../../src/WorldWind',
 
                 // GIBS layers
                 for (var i = 0 ; i < wmtsCapabilities.contents.layer.length ; i++ ) {
-                    layers.push({layer: new WorldWind.WmtsLayer(WorldWind.WmtsLayer.formLayerConfiguration(wmtsCapabilities.contents.layer[i]), "2016-06-08"), enabled: false});
+                    layers.push({layer: new WorldWind.WmtsLayer(WorldWind.WmtsLayer.formLayerConfiguration(wmtsCapabilities.contents.layer[i]), "2016-07-21"), enabled: false});
                 }
                 
                 // Internal layers
                 layers.push(
-                    {layer: new WorldWind.CompassLayer(), enabled: true},
+                    {layer: new WorldWind.CompassLayer(), enabled: false},
                     {layer: new WorldWind.CoordinatesDisplayLayer(wwd), enabled: true},
                     {layer: new WorldWind.ViewControlsLayer(wwd), enabled: true}
                 );
