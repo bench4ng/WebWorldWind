@@ -28,7 +28,8 @@ define(function () {
         });
 
         this.createLayerList();
-        $("#layerDropdown").find(" li").on("click", function (e) {
+
+        $("#layers_options").find("select").on("change", function (e) {
             thisExplorer.onLayerClick2(e);
         });
 
@@ -132,34 +133,38 @@ define(function () {
 
 
     LayerManager.prototype.createLayerList = function () {
-        var layerDropdown = $("#layerDropdown");
+	    /*var layerDropdown = $("#layerDropdown");
 
-        var dropdownButton = $('<button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown">Add<span class="caret"></span></button>');
-        layerDropdown.append(dropdownButton);
+	    var dropdownButton = $('<button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown">Add<span class="caret"></span></button>');
+	    layerDropdown.append(dropdownButton);
 
-        var ulItem = $('<ul class="dropdown-menu">');
-        layerDropdown.append(ulItem);
+	    var ulItem = $('<ul class="dropdown-menu">');
+	    layerDropdown.append(ulItem);
 
-        for (var i = 0; i < this.wwd.layers.length; i++) {
-            var layerItem = $('<li><a >' + this.wwd.layers[i].displayName + '</a></li>');
-            ulItem.append(layerItem);
-        }
+	    for (var i = 0; i < this.wwd.layers.length; i++) {
+		    var layerItem = $('<li><a >' + this.wwd.layers[i].displayName + '</a></li>');
+		    ulItem.append(layerItem);
+	    }
 
-        ulItem = $('</ul>');
-        layerDropdown.append(ulItem);
+	    ulItem = $('</ul>');
+	    layerDropdown.append(ulItem);
 
-        dropdownButton.html("Add ("+this.wwd.layers.length+") <span class='caret'></span>");
+	    dropdownButton.html("Add ("+this.wwd.layers.length+") <span class='caret'></span>");*/
     };
 
 
     LayerManager.prototype.onLayerClick2 = function (event) {
-        var layerName = event.target.innerText || event.target.innerHTML;//layerButton.text();
+	    console.log("Layer clicked!");
 
+        var layerName = $("#layers_options").find("input")[0].defaultValue;
+	    console.log(layerName);
         var layerListItem = $("#layerList");
 
         var self = this;
+
         // Update the layer state for the selected layer.
-        for (var i = 0, len = this.wwd.layers.length; i < len; i++) {
+        for (var i = 0, len = this.wwd.layers.length; i < len; i++)
+        {
             var layer = this.wwd.layers[i];
             if (layer.hide) {
                 continue;
@@ -167,10 +172,6 @@ define(function () {
 
             if (layer.displayName === layerName) {
                 layer.enabled = true;
-                // var layerItem = $('<button class="list-group-item btn btn-block">' + layer.displayName + '</button>');
-                // layerListItem.append(layerItem);
-                // layerItem.addClass("active");
-
                 this.wwd.redraw();
                 this.synchronizeLayerList();
                 break;
@@ -187,26 +188,12 @@ define(function () {
 
         this.synchronizeLayerList();
         this.wwd.redraw();
-
-        // Update the layer state for the selected layer.
-        // for (var i = 0, len = this.wwd.layers.length; i < len; i++) {
-        //     var layer = this.wwd.layers[i];
-        //     if (layer.hide) {
-        //         continue;
-        //     }
-        //     if (layer.displayName === layerName) {
-        //         layer.enabled = false;
-        //         layerButton.remove();
-        //     }
-        //     this.wwd.redraw();
-        // }
     };
 
 
     LayerManager.prototype.synchronizeLayerList = function () {
         var layerListItem = $("#layerList");
 
-        // layerListItem.find("button").off("click");
         layerListItem.find("button").remove();
 
         var self = this;
